@@ -1,12 +1,11 @@
-
-.navbar-brand{
-  width: 10%;
+.navbar-brand {
+  font-size: 45px;
 }
 
-.navbar-brand img{
+.navbar-brand img {
   width: 45%;
 }
 
-.navbar{
-  padding: 1% 1%;
+.navbar {
+  padding: 0 1%;
 }

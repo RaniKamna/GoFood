@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Eye, EyeSlash } from "bootstrap-icons-react";
 
-export const Login = () => {
-    const [credentials, setCredentials] = useState({ email: "", password: "" });
+export const Signup = () => {
+    const [credentials, setCredentials] = useState({
+        name: "",
+        email: "",
+        password: "",
+        location: "",
+    });
     const [showPassword, setShowPassword] = useState(false);
-    let navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setShowPassword((prevState) => !prevState);
@@ -14,26 +18,22 @@ export const Login = () => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
-            const response = await fetch("http://localhost:5000/api/login", {
+            const response = await fetch("http://localhost:5000/api/createuser", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
+                    name: credentials.name,
                     email: credentials.email,
                     password: credentials.password,
+                    location: credentials.location,
                 }),
             });
 
             const json = await response.json();
-            console.log(json);
             if (!json.success) {
                 alert("Enter valid credentials");
-            }
-            if (json.success) {
-                localStorage.setItem("authToken", json.authToken);
-                console.log(localStorage.getItem("authToken"));
-                navigate("/");
             }
         } catch (error) {
             console.log(error);
@@ -43,10 +43,24 @@ export const Login = () => {
     const handleChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value });
     };
+
     return (
         <>
             <div className="container">
                 <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="name" className="form-label">
+                            Name
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="name"
+                            name="name"
+                            value={credentials.name}
+                            onChange={handleChange}
+                        />
+                    </div>
                     <div className="mb-3">
                         <label htmlFor="exampleInputEmail1" className="form-label">
                             Email address
@@ -82,14 +96,31 @@ export const Login = () => {
                             id="show-password-btn"
                             onClick={togglePasswordVisibility}
                         >
-                            {showPassword ? <EyeSlash size={24} /> : <Eye size={24} />}
+                            {showPassword ? (
+                                <EyeSlash size={24} />
+                            ) : (
+                                <Eye size={24} />
+                            )}
                         </button>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputLocation" className="form-label">
+                            Location
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="exampleInputLocation"
+                            name="location"
+                            value={credentials.location}
+                            onChange={handleChange}
+                        />
                     </div>
                     <button type="submit" className="btn btn-success">
                         Submit
                     </button>
-                    <Link to="/createuser" className="m-3 btn btn-danger">
-                        New user
+                    <Link to="/login" className="m-3 btn btn-danger">
+                        Already a user
                     </Link>
                 </form>
             </div>

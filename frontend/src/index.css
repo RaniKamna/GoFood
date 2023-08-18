@@ -13,3 +13,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#carousel {
+  max-height: 400px;
+}
+
+.carousel-item {
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+}
+
+.carousel-item img {
+  object-fit: fill;
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0.4);
+}
+
+.carousel-caption input {
+  background-color: #333333;
+  transition: background-color 0.3s;
+  color: darkgray;
+  border: 1px solid #969494;
+}
+
+.carousel-caption input:focus {
+  background-color: #333333;
+  outline: none;
+  color: darkgray;
+  border: 1px solid #969494;
+  box-shadow: 0 0 5px darkgray;
+}
+
+.card-img-top {
+  object-fit: fill;
+  height: 130px;
+}

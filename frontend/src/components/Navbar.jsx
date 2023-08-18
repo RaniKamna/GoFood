@@ -7,8 +7,8 @@ export const Navbar = () => {
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-success">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="#">
-                        Navbar
+                    <Link className="navbar-brand" to="/">
+                        GoFood
                     </Link>
                     <button
                         className="navbar-toggler"
@@ -23,18 +23,37 @@ export const Navbar = () => {
                     </button>
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav mr-auto">
-                            <li className="nav-item active">
-                                <Link className="nav-link" to="/">
-                                    Home <span className="sr-only">(current)</span>
+                        <ul className="navbar-nav me-auto mb-2">
+                            <li className="nav-item">
+                                <Link className="nav-link active fs-4 mt-2" to="/">
+                                    Home
                                 </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/login">
+                            {localStorage.getItem("authToken") ? (
+                                <li className="nav-item">
+                                    <Link className="nav-link active fs-4 mt-2" to="/">
+                                        My Orders
+                                    </Link>
+                                </li>
+                            ) : (
+                                ""
+                            )}
+                        </ul>
+                        {!localStorage.getItem("authToken") ? (
+                            <div className="d-flex">
+                                <Link className="btn bg-white text-success mx-1" to="/login">
                                     Login
                                 </Link>
-                            </li>
-                        </ul>
+                                <Link
+                                    className="btn bg-white text-success mx-1"
+                                    to="/createuser"
+                                >
+                                    Signup
+                                </Link>
+                            </div>
+                        ) : (
+                            <div className="btn bg-white text-success mx-1">Logout</div>
+                        )}
                     </div>
                 </div>
             </nav>
