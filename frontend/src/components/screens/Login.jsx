@@ -26,13 +26,13 @@ export const Login = () => {
             });
 
             const json = await response.json();
-            console.log(json);
+            //console.log(json);
             if (!json.success) {
                 alert("Enter valid credentials");
             }
             if (json.success) {
                 localStorage.setItem("authToken", json.authToken);
-                console.log(localStorage.getItem("authToken"));
+                //console.log(localStorage.getItem("authToken"));
                 navigate("/");
             }
         } catch (error) {

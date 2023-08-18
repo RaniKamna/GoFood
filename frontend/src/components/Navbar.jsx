@@ -1,8 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import "../App.css";
 
 export const Navbar = () => {
+    const navigate = useNavigate();
+    const handleLogout =()=>{
+        localStorage.removeItem('authToken');
+        navigate("/");
+    }
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-success">
@@ -25,13 +31,13 @@ export const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2">
                             <li className="nav-item">
-                                <Link className="nav-link active fs-4 mt-2" to="/">
+                                <Link className="nav-link active fs-4 mt-3" to="/">
                                     Home
                                 </Link>
                             </li>
                             {localStorage.getItem("authToken") ? (
                                 <li className="nav-item">
-                                    <Link className="nav-link active fs-4 mt-2" to="/">
+                                    <Link className="nav-link active fs-5 mt-3" to="/">
                                         My Orders
                                     </Link>
                                 </li>
@@ -52,7 +58,10 @@ export const Navbar = () => {
                                 </Link>
                             </div>
                         ) : (
-                            <div className="btn bg-white text-success mx-1">Logout</div>
+                            <>
+                                <div className="btn bg-white text-success mx-1">My Cart</div>
+                                <div className="btn bg-white text-danger mx-1" onClick={handleLogout}>Logout</div>
+                            </>
                         )}
                     </div>
                 </div>
