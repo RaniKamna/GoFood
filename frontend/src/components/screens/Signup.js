@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeSlash } from "bootstrap-icons-react";
 
 export const Signup = () => {
@@ -10,6 +10,7 @@ export const Signup = () => {
         location: "",
     });
     const [showPassword, setShowPassword] = useState(false);
+    let navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setShowPassword((prevState) => !prevState);
@@ -35,6 +36,9 @@ export const Signup = () => {
             if (!json.success) {
                 alert("Enter valid credentials");
             }
+            if (json.success) {
+                navigate("/login");
+            }
         } catch (error) {
             console.log(error);
         }
@@ -46,7 +50,7 @@ export const Signup = () => {
 
     return (
         <>
-            <div className="container">
+            <div className="container m-5">
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="name" className="form-label">

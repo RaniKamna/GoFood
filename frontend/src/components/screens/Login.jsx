@@ -46,7 +46,7 @@ export const Login = () => {
     };
     return (
         <>
-            <div className="container">
+            <div className="container m-5">
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="exampleInputEmail1" className="form-label">
