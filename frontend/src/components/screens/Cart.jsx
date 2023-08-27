@@ -15,7 +15,7 @@ export const Cart = () => {
 
     const handleCheckout = async () => {
         let userEmail = localStorage.getItem("userEmail");
-        let response = await fetch("http://localhost:5000/api/orderData", {
+        let response = await fetch(`${process.env.REACT_APP_API_URL}/api/orderData`, {
             // credentials: 'include',
             // Origin:"http://localhost:3000/login",
             method: 'POST',

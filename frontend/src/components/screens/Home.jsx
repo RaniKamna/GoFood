@@ -10,7 +10,8 @@ export const Home = () => {
 
     const loadData = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/getfooddata", {
+            console.log(process.env.REACT_APP_API_URL);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/getfooddata`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -18,7 +19,7 @@ export const Home = () => {
             });
 
             const response1 = await fetch(
-                "http://localhost:5000/api/getfoodcategory",
+                `${process.env.REACT_APP_API_URL}/api/getfoodcategory`,
                 {
                     method: "GET",
                     headers: {
