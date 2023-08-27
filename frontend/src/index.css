@@ -51,3 +51,11 @@ code {
   object-fit: fill;
   height: 130px;
 }
+
+.table, .btn {
+  color: white;
+}
+
+.table-hover>tbody>tr:hover>* {
+  color: white;
+}

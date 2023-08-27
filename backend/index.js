@@ -8,6 +8,7 @@ const mongoDB = require('./config/db');
 const userRouter = require('./routes/userRoute');
 const foodcategoryRouter = require('./routes/foodcategoryRoute');
 const fooddataRouter = require('./routes/fooddataRoute');
+const orderdataRouter = require('./routes/orderdataRoute');
 
 mongoDB();
 
@@ -31,6 +32,7 @@ app.get('/', (req, res) => {
 app.use('/api', userRouter);
 app.use('/api', foodcategoryRouter);
 app.use('/api', fooddataRouter);
+app.use('/api', orderdataRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

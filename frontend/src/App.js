@@ -7,16 +7,19 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Signup } from "./components/screens/Signup";
+import { CartProvider } from "./components/ContextReducer";
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/createuser" element={<Signup />} />
-      </Routes>
-    </div>
+    <CartProvider>
+      <div className="App">
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/createuser" element={<Signup />} />
+        </Routes>
+      </div>
+    </CartProvider>
   );
 }
 
