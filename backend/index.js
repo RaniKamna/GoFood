@@ -9,17 +9,25 @@ const userRouter = require('./routes/userRoute');
 const foodcategoryRouter = require('./routes/foodcategoryRoute');
 const fooddataRouter = require('./routes/fooddataRoute');
 const orderdataRouter = require('./routes/orderdataRoute');
+var cors = require('cors');
+
+app.use(
+  cors({
+      origin: true,
+  })
+);
 
 mongoDB();
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
-})
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+//   res.header(
+//     'Access-Control-Allow-Headers',
+//     'Origin, X-Requested-With, Content-Type, Accept'
+//   );
+//   next();
+// })
+
 // app.use is a type of middleware 
 app.use(express.json());
 app.use(bodyParser.json());
