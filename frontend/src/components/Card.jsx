@@ -88,12 +88,13 @@ export const Card = (props) => {
                         ref={priceRef}
                         onChange={(e) => setSize(e.target.value)}
                     >
-                        {priceOptions.map((data) => {
-                            return (
-                                <option key={data} value={data}>
-                                    {data}
-                                </option>
-                            );
+                        {priceOptions.map((data, index) => {
+                            if (data !== "_id")
+                                return (
+                                    <option key={index} value={data}>
+                                        {data}
+                                    </option>
+                                );
                         })}
                     </select>
                     <div className="d-inline h-100 fs-5">Rs{finalPrice}/-</div>
